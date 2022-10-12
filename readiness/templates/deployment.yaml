@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: zhaoyi0113/nginx-curl
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            # httpGet:
+            #   path: /
+            #   port: 80
+            # initialDelaySeconds: 3
+            # periodSeconds: 3
+          # livenessProbe:
+          #   exec:
+          #     command:
+          #     - curl
+          #     - http://localhost
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
